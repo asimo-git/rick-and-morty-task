@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.869ee58a.css",
-    "main.js": "/static/js/main.14f391d5.js",
-    "static/media/green-portal.png": "/static/media/green-portal.a218ca229093de6f08d2.png",
-    "static/media/widget-logo.png": "/static/media/widget-logo.42c8df0b92603ef2e2e2.png",
-    "static/media/male.svg": "/static/media/male.b28707ebe966c4cca18ba5fb5691589b.svg",
-    "index.html": "/index.html",
-    "static/media/female.svg": "/static/media/female.783a44fdc643ff466098180dfd51f12a.svg",
-    "static/media/genderless.svg": "/static/media/genderless.58da4bd61226d404063cc152bd4d93ad.svg",
-    "main.869ee58a.css.map": "/static/css/main.869ee58a.css.map",
-    "main.14f391d5.js.map": "/static/js/main.14f391d5.js.map"
+    "main.css": "/rick-and-morty-task/static/css/main.869ee58a.css",
+    "main.js": "/rick-and-morty-task/static/js/main.6cece686.js",
+    "static/media/green-portal.png": "/rick-and-morty-task/static/media/green-portal.a218ca229093de6f08d2.png",
+    "static/media/widget-logo.png": "/rick-and-morty-task/static/media/widget-logo.42c8df0b92603ef2e2e2.png",
+    "static/media/male.svg": "/rick-and-morty-task/static/media/male.b28707ebe966c4cca18ba5fb5691589b.svg",
+    "index.html": "/rick-and-morty-task/index.html",
+    "static/media/female.svg": "/rick-and-morty-task/static/media/female.783a44fdc643ff466098180dfd51f12a.svg",
+    "static/media/genderless.svg": "/rick-and-morty-task/static/media/genderless.58da4bd61226d404063cc152bd4d93ad.svg",
+    "main.869ee58a.css.map": "/rick-and-morty-task/static/css/main.869ee58a.css.map",
+    "main.6cece686.js.map": "/rick-and-morty-task/static/js/main.6cece686.js.map"
   },
   "entrypoints": [
     "static/css/main.869ee58a.css",
-    "static/js/main.14f391d5.js"
+    "static/js/main.6cece686.js"
   ]
 }
