@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
 import { PopupInfo } from './PopupInfo';
+import { useEffect } from 'react';
 
 export function Popup({ settings: { visible, content = {} }, setSettings }) {
   const {
@@ -15,22 +16,43 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     location,
     episode: episodes
   } = content;
+  console.log(episodes);
 
-  function togglePopup(e) {
-    if (e.currentTarget !== e.target) {
-      return;
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
+
+      const handleEscape = (event) => {
+        if (event.key === 'Escape') {
+          closePopup();
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+
+      return () => {
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleEscape);
+      };
     }
+  }, [visible]);
 
+  function closePopup() {
     setSettings((prevState) => ({
       ...prevState,
-      visible: !prevState.visible
+      visible: false
     }));
   }
 
+  function closePopupOnOverlayClick(event) {
+    if (event.target === event.currentTarget) {
+      closePopup();
+    }
+  }
+
   return (
-    <PopupContainer visible={visible}>
+    <PopupContainer visible={visible} onClick={closePopupOnOverlayClick}>
       <StyledPopup>
-        <CloseIcon onClick={togglePopup} />
+        <CloseIcon onClick={closePopup} />
 
         <PopupHeader
           name={name}
