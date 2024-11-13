@@ -32,14 +32,10 @@ export function Pagination() {
 
   return (
     <StyledPagination>
-      {activePage > 1 && (
+      {activePage > 0 && (
         <>
-          {activePage !== 1 && (
-            <>
-              <Page onClick={() => pageClickHandler(0)}>« First</Page>
-              <Ellipsis>...</Ellipsis>
-            </>
-          )}
+          <Page onClick={() => pageClickHandler(0)}>« First</Page>
+          {activePage > 1 && <Ellipsis>...</Ellipsis>}
           <Page onClick={() => pageClickHandler(activePage - 1)}>
             {activePage}
           </Page>
@@ -48,20 +44,13 @@ export function Pagination() {
 
       <Page active>{activePage + 1}</Page>
 
-      {activePage < info.pages && (
+      {activePage < info.pages - 1 && (
         <>
           <Page onClick={() => pageClickHandler(activePage + 1)}>
             {activePage + 2}
           </Page>
-
-          {activePage + 1 < info.pages - 1 && (
-            <>
-              <Ellipsis>...</Ellipsis>
-              <Page onClick={() => pageClickHandler(info.pages - 1)}>
-                Last »
-              </Page>
-            </>
-          )}
+          {activePage < info.pages - 2 && <Ellipsis>...</Ellipsis>}
+          <Page onClick={() => pageClickHandler(info.pages - 1)}>Last »</Page>
         </>
       )}
     </StyledPagination>
@@ -84,14 +73,6 @@ const Page = styled.span`
   &:hover {
     color: #83bf46;
   }
-`;
-
-const Container = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  justify-items: center;
-  gap: 30px;
 `;
 
 const Ellipsis = styled(Page)`
