@@ -56,6 +56,7 @@ export function FiltersBar() {
       <FilterInput
         type="text"
         name="species"
+        title="The species of the character (alien, human, etc...)"
         placeholder="Species"
         value={filters.species}
         onChange={handleFilterChange}
@@ -64,6 +65,7 @@ export function FiltersBar() {
         type="text"
         name="type"
         placeholder="Type"
+        title="The type or subspecies of the character (parasite, superhuman, etc...)"
         value={filters.type}
         onChange={handleFilterChange}
       />
@@ -109,7 +111,13 @@ const FilterBase = styled.div`
   }
 `;
 
-const FilterInput = styled(FilterBase).attrs({ as: 'input' })``;
+const FilterInput = styled(FilterBase).attrs({ as: 'input' })`
+  &:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #161625 inset;
+    -webkit-text-fill-color: #ffffff;
+  }
+`;
+
 const FilterSelect = styled(FilterBase).attrs({ as: 'select' })``;
 
 const FilterButton = styled.button`

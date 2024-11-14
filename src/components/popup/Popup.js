@@ -110,8 +110,13 @@ const StyledPopup = styled.div`
     display: none;
   }
 
-  ${window.screen.width < 930 && 'width: 80%'};
-  ${window.screen.width < 600 && 'width: 95%'};
+  @media (max-width: 930px) {
+    width: 80%;
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const CloseIcon = styled.div`
@@ -147,6 +152,11 @@ const CloseIcon = styled.div`
     transform: rotate(45deg);
   }
 
-  ${window.screen.width < 930 && 'right: calc(10% - 10px)'};
-  ${window.screen.width < 600 && 'right: calc(3% - 10px)'};
+  @media (max-width: 930px) {
+    right: calc(10% - 10px);
+  }
+
+  @media (max-width: 600px) {
+    right: calc(3% - 10px);
+  }
 `;
