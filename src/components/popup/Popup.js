@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
@@ -16,21 +17,41 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
     episode: episodes
   } = content;
 
-  function togglePopup(e) {
-    if (e.currentTarget !== e.target) {
-      return;
-    }
+  useEffect(() => {
+    if (visible) {
+      document.body.style.overflow = 'hidden';
 
+      const handleEscape = (event) => {
+        if (event.key === 'Escape') {
+          closePopup();
+        }
+      };
+      document.addEventListener('keydown', handleEscape);
+
+      return () => {
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleEscape);
+      };
+    }
+  }, [visible]);
+
+  function closePopup() {
     setSettings((prevState) => ({
       ...prevState,
-      visible: !prevState.visible
+      visible: false
     }));
   }
 
+  function closePopupOnOverlayClick(event) {
+    if (event.target === event.currentTarget) {
+      closePopup();
+    }
+  }
+
   return (
-    <PopupContainer visible={visible}>
+    <PopupContainer visible={visible} onClick={closePopupOnOverlayClick}>
       <StyledPopup>
-        <CloseIcon onClick={togglePopup} />
+        <CloseIcon onClick={closePopup} />
 
         <PopupHeader
           name={name}
@@ -89,8 +110,13 @@ const StyledPopup = styled.div`
     display: none;
   }
 
-  ${window.screen.width < 930 && 'width: 80%'};
-  ${window.screen.width < 600 && 'width: 95%'};
+  @media (max-width: 930px) {
+    width: 80%;
+  }
+
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 `;
 
 const CloseIcon = styled.div`
@@ -126,6 +152,11 @@ const CloseIcon = styled.div`
     transform: rotate(45deg);
   }
 
-  ${window.screen.width < 930 && 'right: calc(10% - 10px)'};
-  ${window.screen.width < 600 && 'right: calc(3% - 10px)'};
+  @media (max-width: 930px) {
+    right: calc(10% - 10px);
+  }
+
+  @media (max-width: 600px) {
+    right: calc(3% - 10px);
+  }
 `;
